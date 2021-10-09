@@ -1,4 +1,4 @@
-const kasir = (dataKasir, url) => {
+const kasir = () => {
     return {
         openModal : false,
         loading : false,
@@ -8,11 +8,9 @@ const kasir = (dataKasir, url) => {
         email : '',
         password : '',
         password_confirmation : '',
-        url : url,
         action : '',
         method : '',
         errors : {},
-        dataKasir: dataKasir.data,
         resetInput() {
             this.nama = '';
             this.username = '';
@@ -47,37 +45,23 @@ const kasir = (dataKasir, url) => {
             .then(data => {
                 if(data.errors !== undefined){
                     this.errors = data.errors;
+                    this.loading = false;
                 }else{
-                    this.openModal = false;
-                    if(this.method == 'POST'){
-                        if(this.dataKasir.length == 10){
-                        this.dataKasir.pop();
-                        }
-                        this.dataKasir.unshift(data);
-                    } else if(this.method == 'PUT'){
-                        this.dataKasir = this.dataKasir.map(kasir => {
-                            if(kasir.id === data.id){
-                                return data;
-                            }
-                            return kasir;
-                        });
-                    }
-                    swal.fire('Berhasil', `Kasir Berhasil di ${this.method == 'POST' ? 'ditambahkan' : 'diubah' }`,'success');
+                    window.location.reload(false);
                 }
             })
             .catch(error => {
                 if(error.errors !== undefined){
                     this.errors = error.errors;
+                    this.loading = false;
                 }else{
                     alert("Error !!, Silahkan ulangi kembali");
                 }
             });
-            promise.then(() => this.loading = false);
         },
 
         // Hapus Kasir
-        hapusKasir(id) {
-            const urlHapus = this.url + '/' + id;
+        hapusKasir(urlHapus) {
             swal.fire({
                 title: 'Yakin?',
                 text: 'Apakah anda yakin akan menghapus Kasir?',

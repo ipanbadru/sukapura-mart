@@ -16,8 +16,10 @@
     @endisset
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
+    <script defer src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    @livewireStyles
 </head>
 
 <body class="bg-blue-gray-50 flex">
@@ -38,6 +40,7 @@
 
     </div>
 
+    @livewireScripts
     <script>
     Date.prototype.addDays = function (days) {
         const date = new Date(this.valueOf());

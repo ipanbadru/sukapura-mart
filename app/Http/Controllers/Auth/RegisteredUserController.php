@@ -49,6 +49,8 @@ class RegisteredUserController extends Controller
         $user->assignRole('kasir');
         event(new Registered($user));
 
-        return response()->json($user);
+        session()->flash('success', 'Data Kasir Berhasil di tambahkan');
+
+        return response()->json('berhasil');
     }
 }

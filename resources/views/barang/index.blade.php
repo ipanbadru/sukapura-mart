@@ -44,18 +44,18 @@
                 <div class="bg-white overflow-auto">
                     <x-table>
                         <x-slot name="th">
-                            <th class="py-3 px-4 border w-2/6">Nama Barang</th>
-                            <th class="py-3 px-4 border">Barcode</th>
-                            <th class="py-3 px-4 border">Harga Beli</td>
-                            <th class="py-3 px-4 border">Harga Jual</td>
-                            <th class="py-3 px-4 border">Stok</td>
-                            <th class="py-3 px-4 border w-1/6">Aksi</td>
+                            <th class="py-3 px-4 w-2/6">Nama Barang</th>
+                            <th class="py-3 px-4">Barcode</th>
+                            <th class="py-3 px-4">Harga Beli</td>
+                            <th class="py-3 px-4">Harga Jual</td>
+                            <th class="py-3 px-4">Stok</td>
+                            <th class="py-3 px-4 w-1/6">Aksi</td>
                         </x-slot>
                         @if ($barang->count(1))
                         @foreach ($barang as $item)
                         <tr class="hover:bg-gray-50">
-                            <td class="border py-3 px-4">{{ $item->nama_barang }}</td>
-                            <td class="border py-3 px-1 group relative">
+                            <td class="border-t border-b py-3 px-4">{{ $item->nama_barang }}</td>
+                            <td class="border-t border-b py-3 px-1 group relative">
                                 <div class="flex items-center flex-col text-center">
                                     {!! $item->barcode !!}
                                     {{ $item->kode_barang }}
@@ -65,10 +65,10 @@
                                     class="absolute opacity-0 group-hover:opacity-100 top-7 -right-16 py-2 px-4 shadow-lg rounded-xl rounded-tl-none bg-white hover:bg-blue-gray-100 transition-all duration-200"
                                     target="_blank">Cetak Barcode</button>
                             </td>
-                            <td class="border py-3 px-4">{{ $item->harga_beli }}</td>
-                            <td class="border py-3 px-4">{{ $item->harga_jual }}</td>
-                            <td class="border py-3 px-4">{{ $item->jumlah_barang }}</td>
-                            <td class="border py-3 px-4 text-center">
+                            <td class="border-t border-b py-3 px-4">{{ $item->harga_beli }}</td>
+                            <td class="border-t border-b py-3 px-4">{{ $item->harga_jual }}</td>
+                            <td class="border-t border-b py-3 px-4">{{ $item->jumlah_barang }}</td>
+                            <td class="border-t border-b py-3 px-4 text-center">
                                 <x-anchor :href="route('barang.edit', $item->id)" color="emerald">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -88,7 +88,7 @@
                         </tr>
                         @endforeach
                         @else
-                        <tr class="border">
+                        <tr class="border-t border-b">
                             <td class="text-gray-600 text-center py-4 text-lg" colspan="5">Barang Tidak tersedia</td>
                         </tr>
                         @endif

@@ -13,12 +13,9 @@ class KasirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $kasir = User::where('nama', 'like', '%' . $request->search . '%')
-                    ->orWhere('username', 'like', '%' . $request->search . '%')
-                    ->role('kasir')->latest()->paginate(10);
-        return view('kasir.index', compact('kasir'));
+        return view('kasir.index');
     }
 
     /**
@@ -31,7 +28,8 @@ class KasirController extends Controller
     public function update(KasirUpdateRequest $request, User $user)
     {
         $user->update($request->all());
-        return response()->json($user);
+        session()->flash('success', 'Data Kasir Berhasil di ubah');
+        return response()->json('berhasil');
     }
 
     /**

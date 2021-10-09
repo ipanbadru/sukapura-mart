@@ -64,13 +64,13 @@
         </div>
         <x-table>
             <x-slot name="th">
-                <th class="py-3 px-4 border">No</th>
-                <th class="py-3 px-4 border">Id Transaksi</th>
-                <th class="py-3 px-4 border">Total Harga</th>
-                <th class="py-3 px-4 border">Jumlah Bayar</th>
-                <th class="py-3 px-4 border">Kembalian</th>
-                <th class="py-3 px-4 border">Tanggal</th>
-                <th class="py-3 px-4 border">Aksi</th>
+                <th class="py-3 px-4">No</th>
+                <th class="py-3 px-4">Id Transaksi</th>
+                <th class="py-3 px-4">Total Harga</th>
+                <th class="py-3 px-4">Jumlah Bayar</th>
+                <th class="py-3 px-4">Kembalian</th>
+                <th class="py-3 px-4">Tanggal</th>
+                <th class="py-3 px-4">Aksi</th>
             </x-slot>
             @if ($transaksi->count() === 0)
             <tr class="border">
@@ -80,13 +80,13 @@
             <?php $index = ($transaksi->currentPage() - 1) * 10 + 1 ?>
             @foreach ($transaksi as $item)
             <tr class="hover:bg-gray-50">
-                <td class="border py-3 px-4">{{ $index++ }}</td>
-                <td class="border py-3 px-4 text-center">{{ $item->id }}</td>
-                <td class="border py-3 px-4">{{ $item->total_harga }}</td>
-                <td class="border py-3 px-4">{{ $item->jumlah_bayar }}</td>
-                <td class="border py-3 px-4">{{ $item->kembalian }}</td>
-                <td class="border py-3 px-4">{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                <td class="border py-3 px-4 text-center">
+                <td class="border-t border-b py-3 px-4">{{ $index++ }}</td>
+                <td class="border-t border-b py-3 px-4 text-center">{{ $item->id }}</td>
+                <td class="border-t border-b py-3 px-4">{{ $item->total_harga }}</td>
+                <td class="border-t border-b py-3 px-4">{{ $item->jumlah_bayar }}</td>
+                <td class="border-t border-b py-3 px-4">{{ $item->kembalian }}</td>
+                <td class="border-t border-b py-3 px-4">{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
+                <td class="border-t border-b py-3 px-4 text-center">
                     <x-anchor :href="route('laporan.detail', $item->id)" color="blue"><svg
                             xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">

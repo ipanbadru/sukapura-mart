@@ -9,7 +9,6 @@ class TagihanController extends Controller
 {
     public function index()
     {
-        $tagihan = Tagihan::latest()->get();
-        return view('tagihan.index', compact('tagihan'));
+        return view('tagihan.index');
     }
 }

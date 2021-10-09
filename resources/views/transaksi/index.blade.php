@@ -62,17 +62,17 @@
                     </form>
                     <x-table>
                         <x-slot name="th">
-                            <th class="py-3 px-4 border">No</th>
-                            <th class="py-3 px-4 border w-2/5">Nama Barang</td>
-                            <th class="py-3 px-4 border w-1/5">Jumlah</td>
-                            <th class="py-3 px-4 border">Harga</td>
-                            <th class="py-3 px-4 border">Aksi</td>
+                            <th class="py-3 px-4">No</th>
+                            <th class="py-3 px-4 w-2/5">Nama Barang</td>
+                            <th class="py-3 px-4 w-1/5">Jumlah</td>
+                            <th class="py-3 px-4">Harga</td>
+                            <th class="py-3 px-4">Aksi</td>
                         </x-slot>
                         <template x-for="(barang, index) of barangBelanja">
                             <tr class="hover:bg-gray-100">
-                                <td class="border py-3 px-4" x-text="index + 1"></td>
-                                <td class="border py-3 px-4" x-text="barang.nama_barang"></td>
-                                <td class="border py-3 px-4 w-1/5">
+                                <td class="border-t border-b py-3 px-4" x-text="index + 1"></td>
+                                <td class="border-t border-b py-3 px-4" x-text="barang.nama_barang"></td>
+                                <td class="border-t border-b py-3 px-4 w-1/5">
                                     <div class="grid grid-cols-4">
                                         <button @click="decrement(index)"
                                             class="col-span-1 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full rounded-l cursor-pointer outline-none">
@@ -87,8 +87,8 @@
                                         </button>
                                     </div>
                                 </td>
-                                <td class="border py-3 px-4" x-text="barang.harga"></td>
-                                <td class="border py-3 px-4">
+                                <td class="border-t border-b py-3 px-4" x-text="barang.harga"></td>
+                                <td class="border-t border-b py-3 px-4">
                                     <button id="hapus-barang" @click="hapusBarangBelanja(index)"
                                         class="p-2 text-sm rounded-md bg-red-500 hover:bg-red-600 text-white focus:outline-none focus:ring focus:ring-red-300">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"

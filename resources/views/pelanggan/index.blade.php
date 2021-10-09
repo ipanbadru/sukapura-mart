@@ -29,21 +29,21 @@
         <div class="bg-white oveflow-auto">
             <x-table>
                 @slot('th')
-                <th class="py-3 px-4 border">No</th>
-                <th class="py-3 px-4 border">Nik</th>
-                <th class="py-3 px-4 border">Nama Pelanggan</th>
-                <th class="py-3 px-4 border">No Hp</th>
-                <th class="py-3 px-4 border">Aksi</th>
+                <th class="py-3 px-4">No</th>
+                <th class="py-3 px-4">Nik</th>
+                <th class="py-3 px-4">Nama Pelanggan</th>
+                <th class="py-3 px-4">No Hp</th>
+                <th class="py-3 px-4">Aksi</th>
                 @endslot
-                <?php $index = ($transaksi->currentPage() - 1) * 10 + 1 ?>
+                <?php $index = ($pelanggan->currentPage() - 1) * 10 + 1 ?>
                 <template x-if="dataPelanggan.length > 0">
                     <template x-for="(data, index) of dataPelanggan">
                         <tr class="hover:bg-gray-50">
-                            <td class="border py-3 px-4">{{ $index++ }}</td>
-                            <td class="border py-3 px-4" x-text="data.nik"></td>
-                            <td class="border py-3 px-4" x-text="data.nama_pelanggan"></td>
-                            <td class="border py-3 px-4" x-text="data.no_hp"></td>
-                            <td class="border py-3 px-4 text-center">
+                            <td class="border-t border-b py-3 px-4">{{ $index++ }}</td>
+                            <td class="border-t border-b py-3 px-4" x-text="data.nik"></td>
+                            <td class="border-t border-b py-3 px-4" x-text="data.nama_pelanggan"></td>
+                            <td class="border-t border-b py-3 px-4" x-text="data.no_hp"></td>
+                            <td class="border-t border-b py-3 px-4 text-center">
                                 <x-button type="button"
                                     @click="openModal = true; title = 'Edit Pelanggan'; errors = {}; nik = data.nik; nama_pelanggan = data.nama_pelanggan; no_hp = data.no_hp; action = url + '/' + data.id; method = 'PUT'"
                                     color="emerald">
@@ -65,7 +65,7 @@
                     </template>
                 </template>
                 <template x-if="dataPelanggan.length <= 0">
-                    <tr class="border">
+                    <tr class="border-t border-b">
                         <td class="text-gray-600 text-center py-4 text-lg" colspan="5">Pelanggan Tidak tersedia</td>
                     </tr>
                 </template>
