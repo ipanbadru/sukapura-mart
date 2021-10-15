@@ -16,50 +16,9 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $pelanggan = Pelanggan::where('nama_pelanggan', 'like', '%' . $request->search . '%')
-                                ->orWhere('nik', 'like', '%' . $request->search . '%')
-                                ->orderBy('id', 'desc')->paginate(10);
-        return view('pelanggan.index', compact('pelanggan'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PelangganRequest $request)
-    {
-        $save = Pelanggan::create($request->all());
-        return response()->json($save);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(PelangganRequest $request, Pelanggan $pelanggan)
-    {
-        $pelanggan->update($request->all());
-        return response()->json($pelanggan);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pelanggan $pelanggan)
-    {
-        session()->flash('success', 'Data berhasil di hapus');
-        $pelanggan->delete();
-        return json_encode('berhasil');
+        return view('pelanggan.index');
     }
 
     // Download Template Excel data pelanggan

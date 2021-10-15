@@ -37,7 +37,7 @@
         </div>
         <div class="col-span-5 sm:col-span-4">
             <x-label for="harga_beli" :value="__('Harga Beli')" />
-            <x-input id="harga_beli" class="block mt-1 w-full text-right" type="text" name="harga_beli" :value="old('harga_beli') ?? ($barang->harga_beli !== 'Rp. 0' ?? '')"
+            <x-input id="harga_beli" class="block mt-1 w-full text-right" type="text" name="harga_beli" :value="old('harga_beli') ?? ($barang->harga_beli === 'Rp. 0' ? '' : $barang->harga_beli)"
                 required autofocus />
             @error('harga_beli')
             <span class="text-sm mt-1 text-red-600">{{ $message }}</span>
@@ -45,7 +45,7 @@
         </div>
         <div class="col-span-5 sm:col-span-4">
             <x-label for="harga_jual" :value="__('Harga Jual')" />
-            <x-input id="harga_jual" class="block mt-1 w-full text-right" type="text" name="harga_jual" :value="old('harga_jual') ?? ($barang->harga_jual !== 'Rp. 0' ?? '')"
+            <x-input id="harga_jual" class="block mt-1 w-full text-right" type="text" name="harga_jual" :value="old('harga_jual') ?? ($barang->harga_jual === 'Rp. 0' ? '' : $barang->harga_jual)"
                 required autofocus />
             @error('harga_jual')
             <span class="text-sm mt-1 text-red-600">{{ $message }}</span>
@@ -60,9 +60,15 @@
             @enderror
         </div>
         <div class="col-span-10">
-            <x-button color="blue">
-                {{ $button }} Barang
+            @if ($button == 'Edit')
+                <x-button-green>
+                    Edit Barang
+                </x-button-green>
+            @else
+            <x-button>
+                Tambah Barang
             </x-button>
+            @endif
         </div>
     </div>
 </div>

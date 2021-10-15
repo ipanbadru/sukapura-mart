@@ -46,8 +46,7 @@ class Barang extends Model
         if(is_int($value)){
             $this->attributes['harga_beli'] = $value;
         }else{
-            $value = str_replace('Rp. ', '', $value);
-            $this->attributes['harga_beli'] = str_replace('.', '', $value);
+            $this->attributes['harga_beli'] = preg_replace('/\D/', '', $value);
         }
     }
 
@@ -56,8 +55,7 @@ class Barang extends Model
         if(is_int($value)){
             $this->attributes['harga_jual'] = $value;
         }else{
-            $value = str_replace('Rp. ', '', $value);
-            $this->attributes['harga_jual'] =  str_replace('.', '', $value);
+            $this->attributes['harga_jual'] =  preg_replace('/\D/', '', $value);
         }
     }
 }

@@ -36,8 +36,7 @@ const transaksi = (allBarang) => {
             this.totalBayar = '';
             this.barangBelanja = [];
             this.resultSearchBarang = [];
-            this.totalHarga = 0;
-            this.totalBayar = 0;
+            this.totalHarga;
         },
         searchBarangs(){
             const regex = /^\d+\d+\d+$/;
@@ -54,7 +53,6 @@ const transaksi = (allBarang) => {
         addBarangBelanja() {
             this.loadingAddBarangBelanja = true;
             const barang = allBarang.find(barang => barang.nama_barang == this.search || barang.kode_barang == this.search);
-            console.log(barang);
             if(barang == undefined){
                 swal.fire('gagal', 'Barang belum terdaftar', 'error');
             }else{
@@ -189,7 +187,6 @@ const transaksi = (allBarang) => {
                 }),
             }).then(response => response.json())
             .then(data => {
-                console.log(data);
                 if(data === 'berhasil'){
                     this.resetAll();
                     swal.fire('Berhasil', 'Transaksi berhasil di lakukan', 'success');

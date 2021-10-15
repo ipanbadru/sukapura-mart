@@ -1,7 +1,7 @@
 <!-- Desktop Header -->
 <header class="w-full items-center bg-white border-b shadow py-2 px-6 hidden md:flex justify-between z-10">
-    <div class="w-1/2 flex text-xl text-violet-500 font-thin" x-data="{date: new Date(), bulan : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']}" x-init="setInterval(() => date = new Date(), 1000)">
-        <div class="flex space-x-2 font-normal text-violet-600">
+    <div class="w-1/2 flex text-xl text-gray-500 font-thin" x-data="{date: new Date(), bulan : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']}" x-init="setInterval(() => date = new Date(), 1000)">
+        <div class="flex space-x-2 font-normal text-gray-600">
             <span x-text="date.getDate()"></span> 
             <span x-text="bulan[date.getMonth()]"></span>
             <span x-text="date.getFullYear()"></span>
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
-        <button @click="isOpen = !isOpen" class="realtive text-lg text-violet-600 hover:text-violet-700 py-3 flex items-center">
+        <button @click="isOpen = !isOpen" class="realtive text-lg text-gray-600 hover:text-gray-700 py-3 flex items-center">
             {{ Auth::user()->nama }}
             <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
@@ -35,9 +35,9 @@
     </div>
 </header>
 
-<!-- Mobile Header & Nav -->
+{{-- <!-- Mobile Header & Nav -->
 <header x-data="{ isOpen: false }" class="w-full md:hidden">
-    <div class="flex items-center bg-violet-600 justify-between py-5 px-6">
+    <div class="flex items-center bg-violet-700 justify-between py-5 px-6">
         <h2 class="flex items-center text-2xl text-white"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-10 mr-2">{{ Auth::user()->nama }}</h2>
         <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
             <span x-show="!isOpen"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -74,5 +74,5 @@
             </button>
         </form>
     </nav>
-</header>
+</header> --}}
 

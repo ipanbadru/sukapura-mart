@@ -11,6 +11,10 @@ use App\Http\Controllers\TransaksiController;
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/coba', function() {
+    return 'coba';
+});
+
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');
@@ -20,13 +24,9 @@ Route::middleware('auth')->group(function() {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
         Route::get('kasir', [KasirController::class, 'index'])->name('kasir.index');
-        Route::put('kasir/{user}', [KasirController::class, 'update'])->name('kasir.update');
-        Route::delete('kasir/{user}', [KasirController::class, 'destroy'])->name('kasir.destroy');
-
+        
         Route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
         Route::post('pelanggan', [PelangganController::class, 'store'])->name('pelanggan.store');
-        Route::put('pelanggan/{pelanggan}', [PelangganController::class, 'update'])->name('pelanggan.update');
-        Route::delete('pelanggan/{pelanggan}', [PelangganController::class, 'destroy'])->name('pelanggan.destroy');
         Route::get('pelanggan/templatepelanggan', [PelangganController::class, 'templatepelanggan'])->name('pelanggan.templatepelanggan');
         Route::post('pelanggan/importpelanggan', [PelangganController::class, 'importpelanggan'])->name('pelanggan.import');
 
@@ -38,15 +38,15 @@ Route::middleware('auth')->group(function() {
         Route::resource('barang', BarangController::class);
     
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
-        Route::get('/laporan/{transaksi}/detail', [LaporanController::class, 'detail'])->name('laporan.detail');
-        Route::get('laporan/exportexcel', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
-        Route::get('laporan/exportpdf', [LaporanController::class, 'exportpdf'])->name('laporan.exportpdf');
+        Route::post('laporan/exportexcel', [LaporanController::class, 'exportexcel'])->name('laporan.exportexcel');
+        Route::post('laporan/exportpdf', [LaporanController::class, 'exportpdf'])->name('laporan.exportpdf');
     });
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::post('/transaksi/cash', [TransaksiController::class, 'transaksi_cash'])->name('transaksi.cash');
     Route::post('/transaksi/credit', [TransaksiController::class, 'transaksi_credit'])->name('transaksi.credit');
 
     Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan.index');
+    Route::get('/tagihan/exporttagihan', [TagihanController::class, 'exporttagihan'])->name('tagihan.export');
 });
 
 require __DIR__.'/auth.php';

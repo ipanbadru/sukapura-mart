@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasRoles;
-    protected $with = ['roles'];
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *

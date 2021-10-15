@@ -10,14 +10,31 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        ::-webkit-scrollbar{
+            width: 13px;
+        }
+        ::-webkit-scrollbar-track{
+            background: #c4b5fd;
+            box-shadow: 0 0 5px gray;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-image: linear-gradient(to bottom, #a78bfa, #7c3aed);
+            border-radius: 6px;
+            opacity: 1;
+            transition: .5s
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            opacity: 1;
+        }
+    </style>
 
     @isset($style)
         {{ $style }}
     @endisset
 
     <!-- Scripts -->
-    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
-    <script defer src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     @livewireStyles
 </head>
@@ -55,8 +72,6 @@
         const year = date.getFullYear();
         return year + '-' + month + '-' + day;
     }
-    // const date = new Date('2020-12-02');
-    // console.log(date.addDays(7));
     function formatRupiah(angka, prefix)
     {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -73,6 +88,14 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return prefix == undefined ? rupiah : (rupiah ? prefix + '' + rupiah : '');
     }
+
+    window.addEventListener('swal:modal', event => {
+        swal.fire(
+            event.detail.title,
+            event.detail.text,
+            event.detail.type,
+        );
+    });
     </script>
     @isset($script)
         {!! $script !!}

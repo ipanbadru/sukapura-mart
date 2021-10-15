@@ -38,7 +38,11 @@
                         <div class="mb-10 relative h-11">
                             <x-input type="text" id="input-barang" class="block w-full" placeholder="Scan Barang....."
                                 x-model="search" autofocus autocomplete="off" @click.away="open=false" @keyup="searchBarangs"/>
-                            <div class="absolute right-1 top-2" x-show="loadingAddBarangBelanja">
+                            <div class="absolute right-1 top-2" x-show="loadingAddBarangBelanja" 
+                            x-init="$watch('search', search => {
+                                console.log(search);
+                            })
+                            ">
                                 <x-loading w="6" h="6" />
                             </div>
                             <span class="pt-2" x-show="loadingSearch">Loading.....</span>
@@ -60,47 +64,49 @@
                             </template>
                         </div>
                     </form>
-                    <x-table>
-                        <x-slot name="th">
-                            <th class="py-3 px-4">No</th>
-                            <th class="py-3 px-4 w-2/5">Nama Barang</td>
-                            <th class="py-3 px-4 w-1/5">Jumlah</td>
-                            <th class="py-3 px-4">Harga</td>
-                            <th class="py-3 px-4">Aksi</td>
-                        </x-slot>
-                        <template x-for="(barang, index) of barangBelanja">
-                            <tr class="hover:bg-gray-100">
-                                <td class="border-t border-b py-3 px-4" x-text="index + 1"></td>
-                                <td class="border-t border-b py-3 px-4" x-text="barang.nama_barang"></td>
-                                <td class="border-t border-b py-3 px-4 w-1/5">
-                                    <div class="grid grid-cols-4">
-                                        <button @click="decrement(index)"
-                                            class="col-span-1 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full rounded-l cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">−</span>
+                    <div class="bg-transparent overflow-auto w-full">
+                        <x-table>
+                            <x-slot name="th">
+                                <th class="py-3 px-4">No</th>
+                                <th class="py-3 px-4 w-2/5">Nama Barang</td>
+                                <th class="py-3 px-4 w-1/5">Jumlah</td>
+                                <th class="py-3 px-4">Harga</td>
+                                <th class="py-3 px-4">Aksi</td>
+                            </x-slot>
+                            <template x-for="(barang, index) of barangBelanja">
+                                <tr class="hover:bg-gray-100">
+                                    <td class="border-t border-b py-3 px-4" x-text="index + 1"></td>
+                                    <td class="border-t border-b py-3 px-4" x-text="barang.nama_barang"></td>
+                                    <td class="border-t border-b py-3 px-4">
+                                        <div class="grid grid-cols-4">
+                                            <button @click="decrement(index)"
+                                                class="col-span-1 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full rounded-l cursor-pointer outline-none">
+                                                <span class="m-auto text-2xl font-thin">−</span>
+                                            </button>
+                                            <input @keyup="resetHarga(index)" type="number" id="input-jumlah"
+                                                class="col-span-2 outline-none focus:outline-none focus:border-transparent border-0 text-center bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
+                                                name="custom-input-number" x-model="barangBelanja[index].jumlah" />
+                                            <button @click="increment(index)"
+                                                class="col-span-1 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full rounded-r cursor-pointer outline-none">
+                                                <span class="m-auto text-2xl font-thin">+</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="border-t border-b py-3 px-4" x-text="barang.harga"></td>
+                                    <td class="border-t border-b py-3 px-4">
+                                        <button id="hapus-barang" @click="hapusBarangBelanja(index)"
+                                            class="p-2 text-sm rounded-md bg-red-500 hover:bg-red-600 text-white focus:outline-none focus:ring focus:ring-red-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
                                         </button>
-                                        <input @keyup="resetHarga(index)" type="number" id="input-jumlah"
-                                            class="col-span-2 outline-none focus:outline-none focus:border-transparent border-0 text-center bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-                                            name="custom-input-number" x-model="barangBelanja[index].jumlah" />
-                                        <button @click="increment(index)"
-                                            class="col-span-1 bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full rounded-r cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">+</span>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="border-t border-b py-3 px-4" x-text="barang.harga"></td>
-                                <td class="border-t border-b py-3 px-4">
-                                    <button id="hapus-barang" @click="hapusBarangBelanja(index)"
-                                        class="p-2 text-sm rounded-md bg-red-500 hover:bg-red-600 text-white focus:outline-none focus:ring focus:ring-red-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                        </template>
-                    </x-table>
+                                    </td>
+                                </tr>
+                            </template>
+                        </x-table>
+                    </div>
                 </x-card>
             </div>
             <div class="col-span-6 lg:col-span-2">
@@ -140,11 +146,11 @@
     </div>
 
     @slot('style')
-    <link rel="stylesheet" href="/css/slim-select.css">
+    <link rel="stylesheet" href="{{ asset('css/slim-select.css') }}">
     @endslot
     <x-slot name="script">
-        <script src="/js/slim-select.js"></script>
-        <script src="/js/transaksi.js"></script>
+        <script src="{{ asset('js/slim-select.js') }}"></script>
+        <script src="{{ asset('js/transaksi.js') }}"></script>
         @if (session()->has('success'))
         <div class="message hidden">{{ session()->get('success') }}</div>
         <script>

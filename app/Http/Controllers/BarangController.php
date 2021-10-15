@@ -22,8 +22,7 @@ class BarangController extends Controller
      */
     public function index(Request $request)
     {
-        $barang = Barang::latest()->where('nama_barang', 'like', '%' . $request->search . '%')->paginate(10);
-        return view('barang.index', compact('barang'));
+        return view('barang.index');
     }
     /**
      * Show the form for creating a new resource.

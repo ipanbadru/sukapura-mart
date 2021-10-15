@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tagihan;
+use App\Exports\TagihanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TagihanController extends Controller
 {
     public function index()
     {
         return view('tagihan.index');
+    }
+
+    public function exporttagihan()
+    {
+        return Excel::download(new TagihanExport, 'Tagihan.xlsx');
     }
 }

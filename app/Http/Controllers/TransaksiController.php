@@ -30,8 +30,7 @@ class TransaksiController extends Controller
     }
     private function replacing($string) 
     {
-        $newString = str_replace('Rp. ', '', $string);
-        return str_replace('.', '', $newString);
+        return preg_replace('/\D/', '', $string);
     }
     public function transaksi_cash(Request $request)
     {
@@ -44,9 +43,9 @@ class TransaksiController extends Controller
 
         $transaksi = Transaksi::create([
             'id_kasir' => Auth::user()->id,
-            'jumlah_bayar' => $this->replacing($request->totalBayar),
-            'total_harga' => $this->replacing($request->totalHarga),
-            'kembalian' => $this->replacing($request->totalKembali),
+            'jumlah_bayar' => $request->totalBayar,
+            'total_harga' => $request->totalHarga,
+            'kembalian' => $request->totalKembali,
         ]);
 
         foreach($request->barangs as $barang)

@@ -18,7 +18,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="bg-gradient-to-br from-violet-400 to-violet-500 bg-opacity-90">
+<body class="" style="background-image: url('/img/background.jpg'); background-size: cover; background-position: center">
     <div class="font-sans text-gray-900 antialiases">
         {{ $slot }}
     </div>

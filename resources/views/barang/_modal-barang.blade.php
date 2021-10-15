@@ -34,7 +34,7 @@
                         <span class="px-5 text-gray-700" id="file-label">Tidak ada file yang dipilih</span>
                     </label>
                     <input type="file" class="hidden" id="file" name="file" onchange="return changeLabel()">
-                    <x-button color="green">Import Barang</x-button>
+                    <x-button-green>Import Barang</x-button-green>
                     <x-button type="button" color="blue-gray" @click="openModal = false">Batal</x-button>
                 </form>
             </div>
@@ -57,7 +57,7 @@
                             <x-input type="text" id="kode_barang" name="kode_barang" x-model="kodeBarang" readonly class="ml-1 bg-gray-300 w-full"/>
                         </div>
                     </div>
-                    <x-button color="blue">Cetak Barcode</x-button>
+                    <x-button>Cetak Barcode</x-button>
                     <x-button type="button" color="blue-gray" @click="openModal = false">Batal</x-button>
                 </form>
             </div>

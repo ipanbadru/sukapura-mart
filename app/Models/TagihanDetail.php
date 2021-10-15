@@ -21,4 +21,15 @@ class TagihanDetail extends Model
     {
         return $this->belongsTo(Barang::class, 'id_barang');
     }
+
+    public function getHargaBarangAttribute($value)
+    {
+        return 'Rp. ' . number_format($value, 0, '.', '.');
+    }
+
+    public function getHargaBarangNumAttribute()
+    {
+        return $this->attributes['harga_barang'];
+    }
+
 }

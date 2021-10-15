@@ -29,7 +29,7 @@ class LaporanExport implements FromCollection, WithHeadings, WithStyles, WithCol
             foreach($transaki->detail as $detail)
             {
                 $this->row += 1;
-                $laporanData->push([$no++, $transaki->id, date('d-m-Y', strtotime($transaki->created_at)), $detail->barang->nama_barang, $detail->total_barang, $detail->harga_barang * $detail->total_barang]);
+                $laporanData->push([$no++, $transaki->id, date('d-m-Y', strtotime($transaki->created_at)), $detail->barang->nama_barang, $detail->total_barang, $detail->harga_barang]);
             }
         }
         return $laporanData;
@@ -50,7 +50,7 @@ class LaporanExport implements FromCollection, WithHeadings, WithStyles, WithCol
                 ],
             ],
         ]);
-        $sheet->getStyle('A')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+        $sheet->getStyle('A:A' . $this->row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
         $sheet->getStyle('B2:B' . $this->row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         $sheet->getStyle('E2:E' . $this->row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         $sheet->getStyle('F2:F' . $this->row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);

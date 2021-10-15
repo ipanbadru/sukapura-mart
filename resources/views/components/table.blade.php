@@ -1,10 +1,10 @@
-<table class="w-full bg-white">
-    <thead class="bg-violet-400 text-gray-100 border">
-        <tr>
+<table class="min-w-max lg:min-w-0 lg:w-full bg-white border">
+    <thead class="bg-violet-700 text-gray-100 border">
+        <tr class="rounded">
             {{ $th }}
         </tr>
     </thead>
-    <tbody class="border">
+    <tbody>
         {{ $slot }}
     </tbody>
 </table>
